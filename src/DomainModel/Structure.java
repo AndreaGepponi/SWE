@@ -3,12 +3,10 @@ package DomainModel;
 import java.util.ArrayList;
 
 public class Structure {
-    private String Name;
-    private String Place;
+    private String Name, Place, Type, M;
     private ArrayList<Room> Rooms;
     private ArrayList<Review> Reviews;
-    private String M;
-    private String Type;
+    
     public Structure(String N, String m, String P, int[]r, int []s, String type){
         int c = 45;
         M = m;
