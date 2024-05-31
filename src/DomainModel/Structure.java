@@ -5,16 +5,15 @@ import java.util.Arrays;
 
 public class Structure {
     private String Name, Place, Type, M;
-    private int Rooms;
-    private ArrayList<Review> Reviews;
+    private int Rooms, Reviews;
     
-    public Structure(String N, String m, String P, int[]r, int []s, String type){
+    public Structure(String N, String m, String P, int r, String type){
         int c = 45;
         M = m;
         Name = N;
         Place = P;
-        Reviews = new ArrayList<>();
-        Rooms = Arrays.stream(r).sum();
+        Reviews = 0;
+        Rooms = r;
         Type = type;
         int id = 0;
     }
@@ -28,7 +27,7 @@ public class Structure {
     public int getRooms() {
         return Rooms;
     }
-    public ArrayList<Review> getReviews() {
+    public int getReviews() {
         return Reviews;
     }
     public String getM() {

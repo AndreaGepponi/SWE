@@ -193,36 +193,7 @@ public class StructureDAO {
         RoomDAO roomDAO = new RoomDAO();
         ArrayList<Room> rooms = roomDAO.getAllHotelRooms(Hn);
 
-        rooms.sort(Comparator.comparingInt(Room::getPerson));
 
-        ArrayList<Integer> R = new ArrayList<>();
-        ArrayList<Integer> S = new ArrayList<>();
-        int index = 0;
-
-        for(Room r : rooms){
-            int space = r.getId();
-            if(!S.contains(space)){
-                S.add(space);
-                R.add(index, 1);
-                index++;
-            }
-            else {
-                int value = R.get(index) +1;
-                R.add(index, value);
-            }
-        }
-
-        int []  r1 = new int[R.size()];
-
-        for(int i=0;i<R.size();i++){
-            r1[i]  = R.get(i);
-        }
-
-        int [] s1 = new int[S.size()];
-
-        for(int i=0;i<S.size();i++){
-            s1[i] = S.get(i);
-        }
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -233,7 +204,7 @@ public class StructureDAO {
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return new Structure(resultSet.getString("name"), manager.getUsername(), resultSet.getString("place"),
-                        r1, s1, resultSet.getString("type"));
+                        rooms.size(), resultSet.getString("type"));
             }
         } catch (SQLException e) {
             System.err.println("Error: " + e.getMessage());
